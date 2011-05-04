@@ -4,12 +4,14 @@ module DateIterator
 
   # yields inclusive date object of each day
   def each_day_until(_until=Date.today, &block)
+    return self.to_enum(:each_day_until, _until) unless block_given?
     self.step(_until.is_a?(Date) ? _until : Date.parse(_until.to_s), +1, &block)
     nil
   end
 
   # yields inclusive date object of first day of week, starting with mondays
   def each_week_until(_until=Date.today, use_sunday_as_beg_of_week = false, &block)
+    return self.to_enum(:each_week_until, _until, use_sunday_as_beg_of_week) unless block_given?
     _days_to_monday = self.wday == 0 ? 6 : self.wday - 1
     _monday = self - _days_to_monday
     _monday.step(_until.is_a?(Date) ? _until : Date.parse(_until.to_s), +7, &block)

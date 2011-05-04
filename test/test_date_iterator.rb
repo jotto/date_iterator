@@ -12,9 +12,28 @@ class DateIteratorTest < Test::Unit::TestCase
     assert_equal 9, counter
   end
 
+  def test_day_iterator_with_iterator
+    counter = 0
+    Date.parse("2011-01-25").each_day_until("2011-02-02").each do |date|
+      assert date.is_a?(Date)
+      counter += 1
+    end
+    assert_equal 9, counter
+  end
+
   def test_week_iterator
     counter = 0
     Date.parse("2010-12-05").each_week_until("2011-02-02") do |date|
+      assert date.is_a?(Date)
+      assert_equal 1, date.wday
+      counter += 1
+    end
+    assert_equal 10, counter
+  end
+
+  def test_week_iterator_with_iterator
+    counter = 0
+    Date.parse("2010-12-05").each_week_until("2011-02-02").each do |date|
       assert date.is_a?(Date)
       assert_equal 1, date.wday
       counter += 1
