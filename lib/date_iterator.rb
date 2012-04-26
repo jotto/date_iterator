@@ -33,6 +33,21 @@ module DateIterator
     end
   end
 
+  # yields inclusive date object of first day of the year
+  def each_year_until(_until=Date.today, &block)
+    return self.to_enum(:each_year_until, _until) unless block_given?
+
+    _date = Date.new(self.year,1,1)
+    _until = _until.is_a?(Date) ? _until : Date.parse(_until.to_s)
+    _until = Date.new(_until.year,1,1)
+
+    while _date <= _until
+      yield _date
+      _date = _date >> 12
+      _date = Date.new(_date.year,_date.month,1)
+    end
+  end
+
 end
 
 Date.send(:include, DateIterator)

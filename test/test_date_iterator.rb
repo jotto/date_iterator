@@ -79,5 +79,23 @@ class DateIteratorTest < Test::Unit::TestCase
     assert_equal Date.parse("2010-12-25"), _date
   end
 
+  def test_year_iterator
+    counter = 0
+    Date.parse("2009-01-01").each_year_until("2012-02-02") do |date|
+      assert date.is_a?(Date)
+      counter += 1
+    end
+    assert_equal 4, counter
+  end
+
+  def test_year_iterator_with_iterator
+    counter = 0
+    Date.parse("2009-01-01").each_year_until("2012-02-02").each do |date|
+      assert date.is_a?(Date)
+      counter += 1
+    end
+    assert_equal 4, counter
+  end
+
 
 end
