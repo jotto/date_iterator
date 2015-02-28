@@ -1,7 +1,7 @@
-require 'date_iterator'
-require 'test/unit'
+require_relative '../lib/date_iterator'
+require 'minitest/autorun'
 
-class DateIteratorTest < Test::Unit::TestCase
+class DateIteratorTest < Minitest::Test
 
   def test_day_iterator
     counter = 0
@@ -96,6 +96,5 @@ class DateIteratorTest < Test::Unit::TestCase
     end
     assert_equal 4, counter
   end
-
 
 end
