@@ -1,6 +1,8 @@
 # DateIterator
 ---
 
+[![Circle CI](https://circleci.com/gh/jotto/date_iterator.svg?style=svg)](https://circleci.com/gh/jotto/date_iterator)
+
 **Iterate by day, week, or month - inclusive**
 
 * Tested on CRuby: 2.1, 2.2 (but should work at least from 1.8.7)
